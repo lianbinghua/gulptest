@@ -13,6 +13,14 @@ gulp: 默认启动gulp default,执行testLess，scripts，images任务。
 
 gulp watch: 监听.less，.js,image的变化，并执行testLess，scripts，images任务。
 
+还可以单独执行以下任务：
+
+gulp testLess
+
+gulp scripts
+
+gulp images
+
 你会看到，gulptest下多出一个dist文件夹，目录结构如下：
 
 gulptest
@@ -88,6 +96,7 @@ gulp.task('testLess', function () {
 });
 
 /*gulp.task('css', function () {
+
 	var processors=[
          autoprefixer({browsers:['last 3 version'],cascade:false,remove:false}),
          cssnext(),
@@ -98,6 +107,32 @@ gulp.task('testLess', function () {
         .pipe(postcss(processors))
         .pipe(gulp.dest('src/css/test.css')); //将会在src/css下生成index.css
 });*/
+
+//jshintjs文件有没有报错或警告
+//concat合并js文件
+//uglify压缩js
+gulp.task("scripts",function(){
+     gulp.src('src/scripts/**/*.js')
+         .pipe(jshint())
+         .pipe(jshint.reporter('default'))
+         .pipe(concat('main.js'))
+         .pipe(gulp.dest('dist/js'))
+         .pipe(rename({suffix:'.min'}))
+         .pipe(uglify())
+         .pipe(gulp.dest('dist/js'))
+         .pipe(notify({message:'scripts task complete'}));
+});
+
+
+//cache压缩过的图片，不再压缩
+//imagemin压缩图片
+
+gulp.task("images",function(){
+      gulp.src("src/images/**/*")
+          .pipe(cache(imagemin({optimizationLevel:5,progressive:true,interlaced:true})))
+          .pipe(gulp.dest('dist/img'))
+          .pipe(notify({message:'images task complete'}))
+});
 
 
 
