@@ -111,7 +111,9 @@ gulp.task('testLess', function () {
 //jshintjs文件有没有报错或警告
 //concat合并js文件
 //uglify压缩js
+
 gulp.task("scripts",function(){
+
      gulp.src('src/scripts/**/*.js')
          .pipe(jshint())
          .pipe(jshint.reporter('default'))
@@ -128,6 +130,7 @@ gulp.task("scripts",function(){
 //imagemin压缩图片
 
 gulp.task("images",function(){
+
       gulp.src("src/images/**/*")
           .pipe(cache(imagemin({optimizationLevel:5,progressive:true,interlaced:true})))
           .pipe(gulp.dest('dist/img'))
