@@ -16,22 +16,38 @@ gulp watch: 监听.less，.js,image的变化，并执行testLess，scripts，ima
 你会看到，gulptest下多出一个dist文件夹，目录结构如下：
 
 gulptest
+
      dist
+     
         css
+        
            index.css
+           
            index.min.css
+           
         js
+        
            main.js
+           
            main.min.js
+           
         img
+        
           *.jpg
     src
+    
        less
+       
          index.less
+         
        scripts
+       
          index.js
+         
          main.js
+         
        images
+       
          *.jpg
 
 dist文件夹下有css，js，img对应src下的less，scripts,images文件夹
@@ -49,6 +65,7 @@ img文件夹下有 *.jpg
 //PostCSS插件： Autoprefixer (处理浏览器私有前缀)， cssnext (使用CSS未来的语法), precss (像Sass的函数)。
 
 gulp.task('testLess', function () {
+
 	var processors=[
          autoprefixer({browsers:['last 3 version'],cascade:false,remove:false}),
          cssnext(),
