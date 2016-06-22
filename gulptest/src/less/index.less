@@ -1,0 +1,31 @@
+@color: #4D926F;
+@the-border:1px;
+@base-color:#111;
+@red:#842210;
+#header {
+    color: @color;
+    opacity:0.5;
+    display:flex;
+    p{
+       font-size:12px;
+      a{
+         text-decoration: none;
+      }
+      &:hover{
+      	border:1px solid #ccc;
+      }
+    }
+}
+h2 {
+    color: (@red * 3);
+    background:black;
+
+}
+.rounded-corners(@radius:5px){
+	border-radius:@radius;
+}
+#footer{
+	.rounded-corners(6px);
+	color: (@base-color + #003300);
+    border-color: desaturate(@red, 10%);
+}
